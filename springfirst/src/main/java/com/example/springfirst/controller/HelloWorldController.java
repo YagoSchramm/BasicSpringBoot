@@ -1,6 +1,7 @@
 package com.example.springfirst.controller;
 
 import com.example.springfirst.domain.User;
+import com.example.springfirst.infra.err.FilterNotFoundException;
 import com.example.springfirst.service.HelloWorldService;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,12 +18,22 @@ public class HelloWorldController {
     }
     @PostMapping("/{id}")
     public String helloWorldPost(@PathVariable String id,@RequestParam(value = "filter",defaultValue = "no") String filter,@RequestBody User body){
-       if (filter.equals("no")){
-            return "Hello, "+body.getName()+id;
+        if(!isValidFilter(filter)){
+            throw new FilterNotFoundException();
         }
-        if (filter.equals("onlyname")){
-            return  "Hello, "+body.getName();
-        }
-        return "Hello";
+        return helloWorldService.helloWorldPost(filter,id,body);
     }
+    public boolean isValidFilter(String filter){
+    if(filter.equals("no")){
+        return true;
+    }
+    if(filter.equals("onlyname")){
+        return true;
+    }
+    if(filter.equals("")){
+        return true;
+    }
+    return false;
+    }
+
 }
