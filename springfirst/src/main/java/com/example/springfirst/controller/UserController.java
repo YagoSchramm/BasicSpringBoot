@@ -1,6 +1,5 @@
 package com.example.springfirst.controller;
 
-import com.example.springfirst.domain.CreateUserDTO;
 import com.example.springfirst.domain.User;
 import com.example.springfirst.infra.err.FilterNotFoundException;
 import org.springframework.web.bind.annotation.PostMapping;
