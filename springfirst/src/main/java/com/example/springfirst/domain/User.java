@@ -1,12 +1,7 @@
 package com.example.springfirst.domain;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
-import lombok.AllArgsConstructor;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.Setter;
+import jakarta.persistence.*;
+import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -18,17 +13,23 @@ import java.util.UUID;
 @Entity(name="users")
 @Getter
 @Setter
+@NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(of="id")
 public class User implements UserDetails {
     @Id
+    @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
     private  String name;
     private String email;
     private String password;
     private UserRole role;
-    public User() {
+    public User(String email,String name,String password,UserRole role) {
     super();
+    this.name=name;
+    this.email=email;
+    this.password=password;
+    this.role=role;
     }
 
     @Override
