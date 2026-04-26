@@ -1,10 +1,8 @@
 package com.example.springfirst.controller;
 
-import com.example.springfirst.domain.AuthDTO;
-import com.example.springfirst.domain.SignUpDTO;
-import com.example.springfirst.domain.User;
-import com.example.springfirst.domain.UserRole;
+import com.example.springfirst.domain.*;
 import com.example.springfirst.infra.repository.AuthRepository;
+import com.example.springfirst.infra.security.TokenService;
 import com.example.springfirst.service.AuthService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -24,11 +22,15 @@ public class AuthController {
     private AuthenticationManager authenticationManager;
     @Autowired
     private AuthRepository authRepo;
+    @Autowired
+    private TokenService tokenService;
+
     @PostMapping("/login")
     public ResponseEntity login(@RequestBody @Validated AuthDTO data){
     var usernamePassword=new UsernamePasswordAuthenticationToken(data.username(),data.password());
     var auth =authenticationManager.authenticate(usernamePassword);
-    return ResponseEntity.ok().build();
+    var token=tokenService.generateToken((User) auth.getPrincipal());
+    return ResponseEntity.ok(new LoginResponseDTO(token));
     }
     @PostMapping("/signup")
     public ResponseEntity signup(@RequestBody @Validated SignUpDTO data){
