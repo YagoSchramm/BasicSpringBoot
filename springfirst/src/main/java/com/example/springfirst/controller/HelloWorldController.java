@@ -1,6 +1,6 @@
 package com.example.springfirst.controller;
 
-import com.example.springfirst.domain.User;
+import com.example.springfirst.domain.user.User;
 import com.example.springfirst.infra.err.FilterNotFoundException;
 import com.example.springfirst.service.HelloWorldService;
 import org.springframework.web.bind.annotation.*;
