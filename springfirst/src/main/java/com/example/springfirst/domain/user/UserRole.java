@@ -1,6 +1,4 @@
-package com.example.springfirst.domain;
-
-import org.springframework.security.core.GrantedAuthority;
+package com.example.springfirst.domain.user;
 
 public enum UserRole {
     ADMIN("admin"),

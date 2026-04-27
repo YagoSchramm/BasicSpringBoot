@@ -1,9 +1,11 @@
 package com.example.springfirst.controller;
 
-import com.example.springfirst.domain.*;
+import com.example.springfirst.domain.user.AuthDTO;
+import com.example.springfirst.domain.user.LoginResponseDTO;
+import com.example.springfirst.domain.user.SignUpDTO;
+import com.example.springfirst.domain.user.User;
 import com.example.springfirst.infra.repository.AuthRepository;
 import com.example.springfirst.infra.security.TokenService;
-import com.example.springfirst.service.AuthService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
