@@ -5,7 +5,7 @@ import lombok.*;
 
 import java.util.Date;
 import java.util.UUID;
-@Table(name="tasks")
+@Table(name="task")
 @Entity(name="tasks")
 @Getter
 @Setter
@@ -15,7 +15,6 @@ import java.util.UUID;
 public class Task {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
-    private Long id1;
     private UUID id;
     private String name;
     private String description;
